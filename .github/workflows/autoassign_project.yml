@@ -1,23 +1,17 @@
 name: Auto Assign to Project(s)
-
-on:
-  issues:
-    types: [opened]
-  pull_request:
-    types: [opened]
-  issue_comment:
-    types: [created]
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+on:
+  issues:
+    types:
+      - opened
 jobs:
-  assign_one_project:
+  add-to-project:
+    name: Add issue to project
     runs-on: ubuntu-latest
-    name: Assign to One Project
     steps:
-    - name: Assign NEW issues and NEW pull requests to project
-      uses: srggrs/assign-one-project-github-action@42352f30e8f3608e29350741411ab7061c953972 # 1.2.1
-      if: github.event.action == 'opened'
-      with:
-        project: "https://github.com/orgs/ESA-eodashboards/projects/1"
-        column_name: 'Todo'
+      - uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # v1.0.2
+        with:
+          project-url: https://github.com/orgs/ESA-eodashboards/projects/1
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
