@@ -1,6 +1,6 @@
 name: Auto Assign to Project(s)
 env:
-  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  ADD_TO_PROJECT_PAT: ${{ secrets.ADD_TO_PROJECT_PAT }}
 on:
   issues:
     types:
@@ -13,4 +13,4 @@ jobs:
       - uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # v1.0.2
         with:
           project-url: https://github.com/orgs/ESA-eodashboards/projects/1
-          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
